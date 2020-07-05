@@ -1,4 +1,8 @@
-# Whatsapp Client Library for .NET Developer
+# WhatsApp Client Library for .NET Developer
+
+## Info Rilis
+
+Bisa Anda cek di https://whatsappnetclient.github.io/
 
 ## Persyaratan Sistem
 
