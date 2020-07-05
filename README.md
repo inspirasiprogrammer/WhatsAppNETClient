@@ -11,3 +11,15 @@ Sebelum membuka source code, lakukan proses instalasi
 
 * Copykan file [chromedriver.exe](https://github.com/WhatsAppNETClient/WhatsAppNETClient/tree/master/libs) yang ada di folder **libs** ke folder **bin\Debug** atau **bin\Release**
 * Jika folder **bin\Debug** atau **bin\Release** belum ada, silahkan lakukan proses build project terlebih dulu.
+
+## Downgrade .NET Framework Contoh Project
+
+Secara default contoh project cara menggunakan library WhatsApp NET Client ini dibuat menggunakan .NET Framework 4.5.
+
+Bagi Anda yang ingin membuka project tersebut di .NET Framework 4, ikuti langkah-langkah berikut:
+
+1. Klik kanan project -> properties
+   Aktifkan tab Application, kemudian ganti Target framework menjadi .NET Framework 4
+2. Hapus library *WebDriver* dan *WhatsAppNETAPI* yang ada di node *References*, kemudian ganti dengan library *WebDriver* dan *WhatsAppNETAPI* yang ada di folder **libs\net40**
+3. Build ulang project
+4. Selesai
