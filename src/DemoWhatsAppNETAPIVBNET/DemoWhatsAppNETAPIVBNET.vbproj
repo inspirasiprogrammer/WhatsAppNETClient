@@ -58,12 +58,13 @@
     <Reference Include="WaitCursor">
       <HintPath>..\..\libs\WaitCursor.dll</HintPath>
     </Reference>
-    <Reference Include="WebDriver">
-      <HintPath>..\..\libs\WebDriver.dll</HintPath>
-    </Reference>
-    <Reference Include="WhatsAppNETAPI">
+    <Reference Include="WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\WhatsAppNETAPI.dll</HintPath>
+      <HintPath>..\..\libs\net45\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WhatsAppNETAPI, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\net45\WhatsAppNETAPI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

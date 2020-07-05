@@ -51,16 +51,46 @@ Public Class FrmMain
     Private Sub btnKirim_Click(sender As Object, e As EventArgs) Handles btnKirim.Click
         Dim jumlahPesan = Integer.Parse(txtJumlahPesan.Text)
 
-        If (jumlahPesan > 1) Then            
+        If (jumlahPesan > 1) Then
             Dim list = New List(Of BroadcastMsgArgs)
 
+            Dim fileGambarAtauDokumen = String.Empty
+
+            If (chkKirimPesanDgGambar.Checked) Then
+                ' TODO: tambahkan validasi cek file gambar exist
+                fileGambarAtauDokumen = txtFileGambar.Text
+            ElseIf (chkKirimFileAja.Checked) Then
+                ' TODO: tambahkan validasi cek file dokumen exist
+                fileGambarAtauDokumen = txtFileDokumen.Text
+            End If
+
             For index = 1 To jumlahPesan
-                list.Add(New BroadcastMsgArgs(txtKontak.Text, txtPesan.Text))
+                If (Not String.IsNullOrEmpty(fileGambarAtauDokumen)) Then
+                    list.Add(New BroadcastMsgArgs(txtKontak.Text, txtPesan.Text, fileGambarAtauDokumen))
+                Else
+                    list.Add(New BroadcastMsgArgs(txtKontak.Text, txtPesan.Text))
+                End If
             Next
 
-            _whatsAppApi.BroadcastMessage(list, 1)
+            Dim delayInSeconds = 1
+            _whatsAppApi.BroadcastMessage(list, delayInSeconds)
+
         Else
-            _whatsAppApi.SendMessage(New MsgArgs(txtKontak.Text, txtPesan.Text))
+            Dim fileGambarAtauDokumen = String.Empty
+
+            If (chkKirimPesanDgGambar.Checked) Then
+                ' TODO: tambahkan validasi cek file gambar exist
+                fileGambarAtauDokumen = txtFileGambar.Text
+            ElseIf (chkKirimFileAja.Checked) Then
+                ' TODO: tambahkan validasi cek file dokumen exist
+                fileGambarAtauDokumen = txtFileDokumen.Text
+            End If
+
+            If (Not String.IsNullOrEmpty(fileGambarAtauDokumen)) Then
+                _whatsAppApi.SendMessage(New MsgArgs(txtKontak.Text, txtPesan.Text, fileGambarAtauDokumen))
+            Else
+                _whatsAppApi.SendMessage(New MsgArgs(txtKontak.Text, txtPesan.Text))
+            End If
         End If
     End Sub
 
@@ -78,10 +108,6 @@ Public Class FrmMain
         End If
 
         chkAutoReplay.Enabled = chkSubscribe.Checked
-    End Sub
-
-    Private Sub chkAutoReplay_CheckedChanged(sender As Object, e As EventArgs) Handles chkAutoReplay.CheckedChanged
-        _whatsAppApi.AutoReplay = chkAutoReplay.Checked
     End Sub
 
     Private Sub OnMessageRecievedEventHandler(e As MsgArgs)
@@ -102,8 +128,53 @@ Public Class FrmMain
             Dim msgReplay = String.Format("Bpk/Ibu *{0}*, perintah *{1}* sudah kami terima. Silahkan ditunggu.",
                     e.Sender, e.Msg)
 
-            _whatsAppApi.SendMessageAutoReplay(New MsgArgs(e.Sender, msgReplay))
+            _whatsAppApi.SendMessage(New MsgArgs(e.Sender, msgReplay))
 
         End If
     End Sub
+
+    Private Sub chkKirimPesanDgGambar_CheckedChanged(sender As Object, e As EventArgs) Handles chkKirimPesanDgGambar.CheckedChanged
+        btnCariGambar.Enabled = chkKirimPesanDgGambar.Checked
+        If (chkKirimPesanDgGambar.Checked) Then
+            chkKirimFileAja.Checked = False
+            txtFileDokumen.Clear()
+        Else
+            txtFileGambar.Clear()
+        End If
+    End Sub
+
+    Private Sub chkKirimFileAja_CheckedChanged(sender As Object, e As EventArgs) Handles chkKirimFileAja.CheckedChanged
+        btnCariDokumen.Enabled = chkKirimFileAja.Checked
+
+        If (chkKirimFileAja.Checked) Then
+            chkKirimPesanDgGambar.Checked = False
+            txtFileGambar.Clear()
+        Else
+            txtFileDokumen.Clear()
+        End If
+    End Sub
+
+    Private Sub btnCariGambar_Click(sender As Object, e As EventArgs) Handles btnCariGambar.Click
+        Dim fileName = ShowDialogOpen("Lokasi file gambar", True)
+        If (Not String.IsNullOrEmpty(fileName)) Then txtFileGambar.Text = fileName
+    End Sub
+
+    Private Sub btnCariDokumen_Click(sender As Object, e As EventArgs) Handles btnCariDokumen.Click
+        Dim fileName = ShowDialogOpen("Lokasi file dokumen", False)
+        If (Not String.IsNullOrEmpty(fileName)) Then txtFileDokumen.Text = fileName
+    End Sub
+
+    Private Function ShowDialogOpen(ByVal title As String, ByVal fileImageOnly As Boolean) As String
+        Dim fileName = String.Empty
+
+        Using dlgOpen As New OpenFileDialog()
+            dlgOpen.Filter = IIf(fileImageOnly, "File gambar (*.bmp, *.jpg, *.jpeg, *.png)|*.bmp;*.jpg;*.jpeg;*.png", "File dokumen (*.*)|*.*")
+            dlgOpen.Title = title
+
+            Dim result = dlgOpen.ShowDialog()
+            If (result = DialogResult.OK) Then fileName = dlgOpen.FileName
+        End Using
+
+        Return fileName
+    End Function
 End Class

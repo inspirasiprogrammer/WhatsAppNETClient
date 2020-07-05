@@ -72,15 +72,50 @@ namespace DemoWhatsAppNETAPICSharp
             {
                 var list = new List<BroadcastMsgArgs>();
 
-                for (int i = 0; i < jumlahPesan; i++)
+                var fileGambarAtauDokumen = string.Empty;
+
+                if (chkKirimPesanDgGambar.Checked)
                 {
-                    list.Add(new BroadcastMsgArgs(txtKontak.Text, txtPesan.Text));
+                    // TODO: tambahkan validasi cek file gambar exist
+                    fileGambarAtauDokumen = txtFileGambar.Text;
+                }
+                else if (chkKirimFileAja.Checked)
+                {
+                    // TODO: tambahkan validasi cek file dokumen exist
+                    fileGambarAtauDokumen = txtFileDokumen.Text;
                 }
 
-                _whatsAppApi.BroadcastMessage(list, 1);
+                for (int i = 0; i < jumlahPesan; i++)
+                {
+                    if (!string.IsNullOrEmpty(fileGambarAtauDokumen))
+                        list.Add(new BroadcastMsgArgs(txtKontak.Text, txtPesan.Text, fileGambarAtauDokumen));
+                    else
+                        list.Add(new BroadcastMsgArgs(txtKontak.Text, txtPesan.Text));
+                }
+
+                var delayInSeconds = 1;
+                _whatsAppApi.BroadcastMessage(list, delayInSeconds);
             }
             else
-                _whatsAppApi.SendMessage(new MsgArgs(txtKontak.Text, txtPesan.Text));
+            {
+                var fileGambarAtauDokumen = string.Empty;
+
+                if (chkKirimPesanDgGambar.Checked)
+                {
+                    // TODO: tambahkan validasi cek file gambar exist
+                    fileGambarAtauDokumen = txtFileGambar.Text;
+                }             
+                else if (chkKirimFileAja.Checked)
+                {
+                    // TODO: tambahkan validasi cek file dokumen exist
+                    fileGambarAtauDokumen = txtFileDokumen.Text;
+                }
+
+                if (!string.IsNullOrEmpty(fileGambarAtauDokumen))
+                    _whatsAppApi.SendMessage(new MsgArgs(txtKontak.Text, txtPesan.Text, fileGambarAtauDokumen));
+                else
+                    _whatsAppApi.SendMessage(new MsgArgs(txtKontak.Text, txtPesan.Text));
+            }                
         }
 
         private void chkSubscribe_CheckedChanged(object sender, EventArgs e)
@@ -101,11 +136,6 @@ namespace DemoWhatsAppNETAPICSharp
             chkAutoReplay.Enabled = chkSubscribe.Checked;
         }
 
-        private void chkAutoReplay_CheckedChanged(object sender, EventArgs e)
-        {
-            _whatsAppApi.AutoReplay = chkAutoReplay.Checked;
-        }
-
         private void OnMessageRecievedEventHandler(MsgArgs e)
         {
             var msg = string.Format("[{0}] {1}: {2}",
@@ -122,10 +152,64 @@ namespace DemoWhatsAppNETAPICSharp
             if (chkAutoReplay.Checked)
             {
                 var msgReplay = string.Format("Bpk/Ibu *{0}*, perintah *{1}* sudah kami terima. Silahkan ditunggu.",
-                    e.Sender, e.Msg);
+                        e.Sender, e.Msg);
 
-                _whatsAppApi.SendMessageAutoReplay(new MsgArgs(e.Sender, msgReplay));
+                _whatsAppApi.SendMessage(new MsgArgs(e.Sender, msgReplay));             
             }
+        }
+
+        private void btnCariGambar_Click(object sender, EventArgs e)
+        {
+            var fileName = ShowDialogOpen("Lokasi file gambar", true);
+            if (!string.IsNullOrEmpty(fileName)) txtFileGambar.Text = fileName;
+        }
+
+        private void btnCariDokumen_Click(object sender, EventArgs e)
+        {
+            var fileName = ShowDialogOpen("Lokasi file dokumen");
+            if (!string.IsNullOrEmpty(fileName)) txtFileDokumen.Text = fileName;
+        }
+
+        private string ShowDialogOpen(string title, bool fileImageOnly = false)
+        {
+            var fileName = string.Empty;
+
+            using (var dlgOpen = new OpenFileDialog())
+            {
+                dlgOpen.Filter = fileImageOnly ? "File gambar (*.bmp, *.jpg, *.jpeg, *.png)|*.bmp;*.jpg;*.jpeg;*.png"
+                                               : "File dokumen (*.*)|*.*";
+                dlgOpen.Title = title;
+
+                var result = dlgOpen.ShowDialog();
+                if (result == DialogResult.OK) fileName = dlgOpen.FileName;
+            }
+
+            return fileName;
+        }
+
+        private void chkKirimPesanDgGambar_CheckedChanged(object sender, EventArgs e)
+        {
+            btnCariGambar.Enabled = chkKirimPesanDgGambar.Checked;
+            if (chkKirimPesanDgGambar.Checked)
+            {
+                chkKirimFileAja.Checked = false;
+                txtFileDokumen.Clear();
+            }
+            else
+                txtFileGambar.Clear();
+        }
+
+        private void chkKirimFileAja_CheckedChanged(object sender, EventArgs e)
+        {
+            btnCariDokumen.Enabled = chkKirimFileAja.Checked;
+
+            if (chkKirimFileAja.Checked)
+            {
+                chkKirimPesanDgGambar.Checked = false;
+                txtFileGambar.Clear();
+            }
+            else
+                txtFileDokumen.Clear();
         }
     }
 }
