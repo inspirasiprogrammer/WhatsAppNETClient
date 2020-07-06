@@ -2,7 +2,7 @@
 
 ## Info Rilis
 
-Bisa Anda cek di https://whatsappnetclient.github.io/
+Bisa Anda cek di http://wa-net.coding4ever.net/
 
 ## Persyaratan Sistem
 
