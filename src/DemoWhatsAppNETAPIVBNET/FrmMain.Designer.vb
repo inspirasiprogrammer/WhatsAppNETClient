@@ -26,6 +26,8 @@ Partial Class FrmMain
         Me.flowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnStart = New System.Windows.Forms.Button()
         Me.btnStop = New System.Windows.Forms.Button()
+        Me.chkHeadless = New System.Windows.Forms.CheckBox()
+        Me.btnGrabContacts = New System.Windows.Forms.Button()
         Me.groupBox1 = New System.Windows.Forms.GroupBox()
         Me.tableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.label1 = New System.Windows.Forms.Label()
@@ -83,6 +85,8 @@ Partial Class FrmMain
         '
         Me.flowLayoutPanel1.Controls.Add(Me.btnStart)
         Me.flowLayoutPanel1.Controls.Add(Me.btnStop)
+        Me.flowLayoutPanel1.Controls.Add(Me.chkHeadless)
+        Me.flowLayoutPanel1.Controls.Add(Me.btnGrabContacts)
         Me.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flowLayoutPanel1.Location = New System.Drawing.Point(3, 3)
         Me.flowLayoutPanel1.Name = "flowLayoutPanel1"
@@ -107,6 +111,27 @@ Partial Class FrmMain
         Me.btnStop.TabIndex = 1
         Me.btnStop.Text = "Stop"
         Me.btnStop.UseVisualStyleBackColor = True
+        '
+        'chkHeadless
+        '
+        Me.chkHeadless.AutoSize = True
+        Me.chkHeadless.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.chkHeadless.Location = New System.Drawing.Point(165, 3)
+        Me.chkHeadless.Name = "chkHeadless"
+        Me.chkHeadless.Size = New System.Drawing.Size(153, 23)
+        Me.chkHeadless.TabIndex = 3
+        Me.chkHeadless.Text = "Mode Siluman (no window)"
+        Me.chkHeadless.UseVisualStyleBackColor = True
+        '
+        'btnGrabContacts
+        '
+        Me.btnGrabContacts.Enabled = False
+        Me.btnGrabContacts.Location = New System.Drawing.Point(324, 3)
+        Me.btnGrabContacts.Name = "btnGrabContacts"
+        Me.btnGrabContacts.Size = New System.Drawing.Size(97, 23)
+        Me.btnGrabContacts.TabIndex = 4
+        Me.btnGrabContacts.Text = "Grab Contacts"
+        Me.btnGrabContacts.UseVisualStyleBackColor = True
         '
         'groupBox1
         '
@@ -381,6 +406,7 @@ Partial Class FrmMain
         Me.Text = "Demo WhatsAppAPI untuk .NET Developer (VB.NET)"
         Me.tableLayoutPanel1.ResumeLayout(False)
         Me.flowLayoutPanel1.ResumeLayout(False)
+        Me.flowLayoutPanel1.PerformLayout()
         Me.groupBox1.ResumeLayout(False)
         Me.tableLayoutPanel2.ResumeLayout(False)
         Me.tableLayoutPanel2.PerformLayout()
@@ -425,5 +451,7 @@ Partial Class FrmMain
     Friend WithEvents chkKirimFileAja As System.Windows.Forms.CheckBox
     Friend WithEvents txtFileDokumen As System.Windows.Forms.TextBox
     Friend WithEvents btnCariDokumen As System.Windows.Forms.Button
+    Private WithEvents chkHeadless As System.Windows.Forms.CheckBox
+    Private WithEvents btnGrabContacts As System.Windows.Forms.Button
 
 End Class

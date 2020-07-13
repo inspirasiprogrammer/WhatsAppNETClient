@@ -16,36 +16,52 @@ Public Class FrmMain
 
         Using New StCursor(Cursors.WaitCursor, New TimeSpan(0, 0, 0, 0))
 
-            If (_whatsAppApi.Connect(url)) Then
+            If (_whatsAppApi.Connect(url, chkHeadless.Checked)) Then
 
                 While (Not _whatsAppApi.OnReady())
+
+                    If chkHeadless.Checked Then
+                        If _whatsAppApi.IsScanMe() Then
+                            Dim frmScanQRCode = New FrmScanQRCode(_whatsAppApi)
+                            frmScanQRCode.ShowDialog()
+                        End If
+                    End If
+
                     Thread.Sleep(1000)
                 End While
 
+
                 btnStart.Enabled = False
                 btnStop.Enabled = True
+                btnGrabContacts.Enabled = True
                 btnKirim.Enabled = True
 
                 chkSubscribe.Enabled = True
+
+            Else
+                _whatsAppApi.Disconnect()
             End If
 
         End Using
     End Sub
 
     Private Sub btnStop_Click(sender As Object, e As EventArgs) Handles btnStop.Click
-        _whatsAppApi.Disconnect()
+        Using New StCursor(Cursors.WaitCursor, New TimeSpan(0, 0, 0, 0))
+            _whatsAppApi.Disconnect()
 
-        btnStart.Enabled = True
-        btnStop.Enabled = False
-        btnKirim.Enabled = False
+            btnStart.Enabled = True
+            btnStop.Enabled = False
+            btnGrabContacts.Enabled = False
+            btnKirim.Enabled = False
 
-        chkSubscribe.Checked = False
-        chkSubscribe.Enabled = False
+            chkSubscribe.Checked = False
+            chkSubscribe.Enabled = False
 
-        chkAutoReplay.Checked = False
-        chkAutoReplay.Enabled = False
+            chkAutoReplay.Checked = False
+            chkAutoReplay.Enabled = False
 
-        lstPesanMasuk.Items.Clear()
+            lstPesanMasuk.Items.Clear()
+        End Using        
     End Sub
 
     Private Sub btnKirim_Click(sender As Object, e As EventArgs) Handles btnKirim.Click
@@ -177,4 +193,13 @@ Public Class FrmMain
 
         Return fileName
     End Function
+
+    Private Sub btnGrabContacts_Click(sender As Object, e As EventArgs) Handles btnGrabContacts.Click
+        Using New StCursor(Cursors.WaitCursor, New TimeSpan(0, 0, 0, 0))
+            Dim contacts = _whatsAppApi.GrabContacts()
+
+            Dim frmContact = New FrmListContact(contacts)
+            frmContact.ShowDialog()
+        End Using
+    End Sub
 End Class

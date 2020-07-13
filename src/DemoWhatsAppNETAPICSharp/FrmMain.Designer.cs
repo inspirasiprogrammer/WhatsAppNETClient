@@ -32,6 +32,8 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
+            this.chkHeadless = new System.Windows.Forms.CheckBox();
+            this.btnGrabContacts = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -89,6 +91,8 @@
             // 
             this.flowLayoutPanel1.Controls.Add(this.btnStart);
             this.flowLayoutPanel1.Controls.Add(this.btnStop);
+            this.flowLayoutPanel1.Controls.Add(this.chkHeadless);
+            this.flowLayoutPanel1.Controls.Add(this.btnGrabContacts);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -115,6 +119,28 @@
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // chkHeadless
+            // 
+            this.chkHeadless.AutoSize = true;
+            this.chkHeadless.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkHeadless.Location = new System.Drawing.Point(165, 3);
+            this.chkHeadless.Name = "chkHeadless";
+            this.chkHeadless.Size = new System.Drawing.Size(153, 23);
+            this.chkHeadless.TabIndex = 2;
+            this.chkHeadless.Text = "Mode Siluman (no window)";
+            this.chkHeadless.UseVisualStyleBackColor = true;
+            // 
+            // btnGrabContacts
+            // 
+            this.btnGrabContacts.Enabled = false;
+            this.btnGrabContacts.Location = new System.Drawing.Point(324, 3);
+            this.btnGrabContacts.Name = "btnGrabContacts";
+            this.btnGrabContacts.Size = new System.Drawing.Size(97, 23);
+            this.btnGrabContacts.TabIndex = 3;
+            this.btnGrabContacts.Text = "Grab Contacts";
+            this.btnGrabContacts.UseVisualStyleBackColor = true;
+            this.btnGrabContacts.Click += new System.EventHandler(this.btnGrabContacts_Click);
             // 
             // groupBox1
             // 
@@ -398,6 +424,7 @@
             this.Text = "Demo WhatsAppAPI untuk .NET Developer (C#)";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -445,6 +472,8 @@
         private System.Windows.Forms.CheckBox chkKirimFileAja;
         private System.Windows.Forms.TextBox txtFileDokumen;
         private System.Windows.Forms.Button btnCariDokumen;
+        private System.Windows.Forms.CheckBox chkHeadless;
+        private System.Windows.Forms.Button btnGrabContacts;
     }
 }
 

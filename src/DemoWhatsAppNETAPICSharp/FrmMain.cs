@@ -31,37 +31,53 @@ namespace DemoWhatsAppNETAPICSharp
 
             using (new StCursor(Cursors.WaitCursor, new TimeSpan(0, 0, 0, 0)))
             {
-                if (_whatsAppApi.Connect(url))
+                if (_whatsAppApi.Connect(url, chkHeadless.Checked))
                 {
                     while (!_whatsAppApi.OnReady())
                     {
+                        if (chkHeadless.Checked)
+                        {
+                            if (_whatsAppApi.IsScanMe())
+                            {
+                                var frmScanQRCode = new FrmScanQRCode(_whatsAppApi);
+                                frmScanQRCode.ShowDialog();
+                            }
+                        }
+
                         Thread.Sleep(1000);
                     }
 
                     btnStart.Enabled = false;
                     btnStop.Enabled = true;
+                    btnGrabContacts.Enabled = true;
                     btnKirim.Enabled = true;
 
                     chkSubscribe.Enabled = true;
                 }
+                else
+                    _whatsAppApi.Disconnect();
             }
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            _whatsAppApi.Disconnect();
+            using (new StCursor(Cursors.WaitCursor, new TimeSpan(0, 0, 0, 0)))
+            {
+                _whatsAppApi.Disconnect();
 
-            btnStart.Enabled = true;
-            btnStop.Enabled = false;
-            btnKirim.Enabled = false;
+                btnStart.Enabled = true;
+                btnStop.Enabled = false;
+                btnGrabContacts.Enabled = false;
+                btnKirim.Enabled = false;
 
-            chkSubscribe.Checked = false;
-            chkSubscribe.Enabled = false;
+                chkSubscribe.Checked = false;
+                chkSubscribe.Enabled = false;
 
-            chkAutoReplay.Checked = false;
-            chkAutoReplay.Enabled = false;
+                chkAutoReplay.Checked = false;
+                chkAutoReplay.Enabled = false;
 
-            lstPesanMasuk.Items.Clear();
+                lstPesanMasuk.Items.Clear();
+            }            
         }
 
         private void btnKirim_Click(object sender, EventArgs e)
@@ -210,6 +226,17 @@ namespace DemoWhatsAppNETAPICSharp
             }
             else
                 txtFileDokumen.Clear();
+        }
+
+        private void btnGrabContacts_Click(object sender, EventArgs e)
+        {
+            using (new StCursor(Cursors.WaitCursor, new TimeSpan(0, 0, 0, 0)))
+            {
+                var contacts = _whatsAppApi.GrabContacts();
+
+                var frmContact = new FrmListContact(contacts);
+                frmContact.ShowDialog();
+            }
         }
     }
 }
