@@ -18,6 +18,11 @@ Sebelum membuka source code, lakukan proses instalasi
 
 ## Downgrade .NET Framework Contoh Project
 
+WhatsApp NET Client tersedia dalam dua versi yaitu:
+
+1. Versi .NET Framework 4.0 untuk Windows XP, Windows Server 2003, Windows Vista, Windows Server 2008 dan Windows 7.
+2. Versi .NET Framework 4.5 untuk windows 7 ke atas.
+
 Secara default contoh project cara menggunakan library WhatsApp NET Client ini dibuat menggunakan .NET Framework 4.5.
 
 Bagi Anda yang ingin membuka project tersebut di .NET Framework 4, ikuti langkah-langkah berikut:
