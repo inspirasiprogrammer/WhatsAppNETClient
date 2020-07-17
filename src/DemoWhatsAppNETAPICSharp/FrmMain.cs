@@ -53,6 +53,7 @@ namespace DemoWhatsAppNETAPICSharp
                     btnKirim.Enabled = true;
 
                     chkSubscribe.Enabled = true;
+                    chkMessageSentSubscribe.Enabled = true;
                 }
                 else
                     _whatsAppApi.Disconnect();
@@ -72,6 +73,9 @@ namespace DemoWhatsAppNETAPICSharp
 
                 chkSubscribe.Checked = false;
                 chkSubscribe.Enabled = false;
+
+                chkMessageSentSubscribe.Checked = false;
+                chkMessageSentSubscribe.Enabled = false;
 
                 chkAutoReplay.Checked = false;
                 chkAutoReplay.Enabled = false;
@@ -101,12 +105,27 @@ namespace DemoWhatsAppNETAPICSharp
                     fileGambarAtauDokumen = txtFileDokumen.Text;
                 }
 
+                // TODO: diaktifkan lagi
+                /*
                 for (int i = 0; i < jumlahPesan; i++)
                 {
                     if (!string.IsNullOrEmpty(fileGambarAtauDokumen))
                         list.Add(new BroadcastMsgArgs(txtKontak.Text, txtPesan.Text, fileGambarAtauDokumen));
                     else
                         list.Add(new BroadcastMsgArgs(txtKontak.Text, txtPesan.Text));
+                }*/
+
+                if (!string.IsNullOrEmpty(fileGambarAtauDokumen))
+                {
+                    list.Add(new BroadcastMsgArgs("My 3 HP", txtPesan.Text, fileGambarAtauDokumen));
+                    //list.Add(new BroadcastMsgArgs("Adek Simpati", txtPesan.Text, fileGambarAtauDokumen));
+                    list.Add(new BroadcastMsgArgs("Kartu 3 Modem Bolt", txtPesan.Text, fileGambarAtauDokumen));
+                }
+                else
+                {
+                    list.Add(new BroadcastMsgArgs("My 3 HP", txtPesan.Text));
+                    //list.Add(new BroadcastMsgArgs("Adek Simpati", txtPesan.Text));
+                    list.Add(new BroadcastMsgArgs("Kartu 3 Modem Bolt", txtPesan.Text));
                 }
 
                 var delayInSeconds = 1;
@@ -237,6 +256,34 @@ namespace DemoWhatsAppNETAPICSharp
                 var frmContact = new FrmListContact(contacts);
                 frmContact.ShowDialog();
             }
+        }
+
+        private void chkMessageSentSubscribe_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkMessageSentSubscribe.Checked)
+            {
+                _whatsAppApi.OnMessageSent += OnMessageSentEventHandler;
+            }
+            else
+            {
+                _whatsAppApi.OnMessageSent -= OnMessageSentEventHandler;
+
+                lstPesanKeluar.Items.Clear();
+            }
+        }
+
+        private void OnMessageSentEventHandler(MsgArgs e)
+        {            
+            var msg = string.Format("[{0}] {1}: {2}",
+                e.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss"), e.Sender, e.Msg);
+
+            // karena pesan yang masuk beda thread, 
+            // jadi harus menggunakan cara seperti ini untuk mengupdate UI
+            lstPesanKeluar.Invoke(() =>
+            {
+                lstPesanKeluar.Items.Add(msg);
+                lstPesanKeluar.SelectedIndex = lstPesanKeluar.Items.Count - 1;
+            });
         }
     }
 }

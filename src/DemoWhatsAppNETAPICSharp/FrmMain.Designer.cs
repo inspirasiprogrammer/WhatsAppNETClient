@@ -52,12 +52,17 @@
             this.chkKirimFileAja = new System.Windows.Forms.CheckBox();
             this.txtFileDokumen = new System.Windows.Forms.TextBox();
             this.btnCariDokumen = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.chkSubscribe = new System.Windows.Forms.CheckBox();
             this.chkAutoReplay = new System.Windows.Forms.CheckBox();
             this.lstPesanMasuk = new System.Windows.Forms.ListBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.chkMessageSentSubscribe = new System.Windows.Forms.CheckBox();
+            this.lstPesanKeluar = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -65,9 +70,12 @@
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.flowLayoutPanel5.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -76,7 +84,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tabControl1, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -343,16 +351,27 @@
             this.btnCariDokumen.UseVisualStyleBackColor = true;
             this.btnCariDokumen.Click += new System.EventHandler(this.btnCariDokumen_Click);
             // 
-            // groupBox2
+            // tabControl1
             // 
-            this.groupBox2.Controls.Add(this.tableLayoutPanel3);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(3, 243);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(530, 296);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = " [ Pesan Masuk ] ";
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(3, 243);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(530, 296);
+            this.tabControl1.TabIndex = 2;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.tableLayoutPanel3);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(522, 270);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Pesan Masuk";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel3
             // 
@@ -361,12 +380,12 @@
             this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel3, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.lstPesanMasuk, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(524, 277);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(516, 264);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // flowLayoutPanel3
@@ -376,7 +395,7 @@
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(518, 20);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(510, 20);
             this.flowLayoutPanel3.TabIndex = 0;
             // 
             // chkSubscribe
@@ -408,8 +427,56 @@
             this.lstPesanMasuk.FormattingEnabled = true;
             this.lstPesanMasuk.Location = new System.Drawing.Point(3, 29);
             this.lstPesanMasuk.Name = "lstPesanMasuk";
-            this.lstPesanMasuk.Size = new System.Drawing.Size(518, 245);
+            this.lstPesanMasuk.Size = new System.Drawing.Size(510, 232);
             this.lstPesanMasuk.TabIndex = 1;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.tableLayoutPanel4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(522, 270);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Pesan Keluar";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.chkMessageSentSubscribe, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.lstPesanKeluar, 0, 1);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(516, 264);
+            this.tableLayoutPanel4.TabIndex = 0;
+            // 
+            // chkMessageSentSubscribe
+            // 
+            this.chkMessageSentSubscribe.AutoSize = true;
+            this.chkMessageSentSubscribe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkMessageSentSubscribe.Enabled = false;
+            this.chkMessageSentSubscribe.Location = new System.Drawing.Point(3, 3);
+            this.chkMessageSentSubscribe.Name = "chkMessageSentSubscribe";
+            this.chkMessageSentSubscribe.Size = new System.Drawing.Size(510, 20);
+            this.chkMessageSentSubscribe.TabIndex = 0;
+            this.chkMessageSentSubscribe.Text = "Subscribe";
+            this.chkMessageSentSubscribe.UseVisualStyleBackColor = true;
+            this.chkMessageSentSubscribe.CheckedChanged += new System.EventHandler(this.chkMessageSentSubscribe_CheckedChanged);
+            // 
+            // lstPesanKeluar
+            // 
+            this.lstPesanKeluar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstPesanKeluar.FormattingEnabled = true;
+            this.lstPesanKeluar.Location = new System.Drawing.Point(3, 29);
+            this.lstPesanKeluar.Name = "lstPesanKeluar";
+            this.lstPesanKeluar.Size = new System.Drawing.Size(510, 232);
+            this.lstPesanKeluar.TabIndex = 1;
             // 
             // FrmMain
             // 
@@ -434,10 +501,14 @@
             this.flowLayoutPanel4.PerformLayout();
             this.flowLayoutPanel5.ResumeLayout(false);
             this.flowLayoutPanel5.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -458,7 +529,6 @@
         private System.Windows.Forms.Button btnKirim;
         private System.Windows.Forms.TextBox txtJumlahPesan;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.CheckBox chkSubscribe;
@@ -474,6 +544,12 @@
         private System.Windows.Forms.Button btnCariDokumen;
         private System.Windows.Forms.CheckBox chkHeadless;
         private System.Windows.Forms.Button btnGrabContacts;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.CheckBox chkMessageSentSubscribe;
+        private System.Windows.Forms.ListBox lstPesanKeluar;
     }
 }
 

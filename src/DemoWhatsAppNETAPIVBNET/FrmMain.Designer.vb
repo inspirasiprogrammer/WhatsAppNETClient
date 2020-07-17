@@ -46,12 +46,17 @@ Partial Class FrmMain
         Me.chkKirimFileAja = New System.Windows.Forms.CheckBox()
         Me.txtFileDokumen = New System.Windows.Forms.TextBox()
         Me.btnCariDokumen = New System.Windows.Forms.Button()
-        Me.groupBox2 = New System.Windows.Forms.GroupBox()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.tableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.flowLayoutPanel3 = New System.Windows.Forms.FlowLayoutPanel()
         Me.chkSubscribe = New System.Windows.Forms.CheckBox()
         Me.chkAutoReplay = New System.Windows.Forms.CheckBox()
         Me.lstPesanMasuk = New System.Windows.Forms.ListBox()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
+        Me.lstPesanKeluar = New System.Windows.Forms.ListBox()
+        Me.chkMessageSentSubscribe = New System.Windows.Forms.CheckBox()
         Me.tableLayoutPanel1.SuspendLayout()
         Me.flowLayoutPanel1.SuspendLayout()
         Me.groupBox1.SuspendLayout()
@@ -59,9 +64,12 @@ Partial Class FrmMain
         Me.flowLayoutPanel2.SuspendLayout()
         Me.FlowLayoutPanel4.SuspendLayout()
         Me.FlowLayoutPanel5.SuspendLayout()
-        Me.groupBox2.SuspendLayout()
+        Me.TabControl1.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
         Me.tableLayoutPanel3.SuspendLayout()
         Me.flowLayoutPanel3.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
+        Me.TableLayoutPanel4.SuspendLayout()
         Me.SuspendLayout()
         '
         'tableLayoutPanel1
@@ -70,7 +78,7 @@ Partial Class FrmMain
         Me.tableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tableLayoutPanel1.Controls.Add(Me.flowLayoutPanel1, 0, 0)
         Me.tableLayoutPanel1.Controls.Add(Me.groupBox1, 0, 1)
-        Me.tableLayoutPanel1.Controls.Add(Me.groupBox2, 0, 2)
+        Me.tableLayoutPanel1.Controls.Add(Me.TabControl1, 0, 2)
         Me.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.tableLayoutPanel1.Name = "tableLayoutPanel1"
@@ -326,16 +334,27 @@ Partial Class FrmMain
         Me.btnCariDokumen.Text = "..."
         Me.btnCariDokumen.UseVisualStyleBackColor = True
         '
-        'groupBox2
+        'TabControl1
         '
-        Me.groupBox2.Controls.Add(Me.tableLayoutPanel3)
-        Me.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.groupBox2.Location = New System.Drawing.Point(3, 241)
-        Me.groupBox2.Name = "groupBox2"
-        Me.groupBox2.Size = New System.Drawing.Size(530, 298)
-        Me.groupBox2.TabIndex = 2
-        Me.groupBox2.TabStop = False
-        Me.groupBox2.Text = " [ Pesan Masuk ] "
+        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl1.Location = New System.Drawing.Point(3, 241)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(530, 298)
+        Me.TabControl1.TabIndex = 3
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.tableLayoutPanel3)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(522, 272)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Pesan Masuk"
+        Me.TabPage1.UseVisualStyleBackColor = True
         '
         'tableLayoutPanel3
         '
@@ -344,12 +363,12 @@ Partial Class FrmMain
         Me.tableLayoutPanel3.Controls.Add(Me.flowLayoutPanel3, 0, 0)
         Me.tableLayoutPanel3.Controls.Add(Me.lstPesanMasuk, 0, 1)
         Me.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tableLayoutPanel3.Location = New System.Drawing.Point(3, 16)
+        Me.tableLayoutPanel3.Location = New System.Drawing.Point(3, 3)
         Me.tableLayoutPanel3.Name = "tableLayoutPanel3"
         Me.tableLayoutPanel3.RowCount = 2
         Me.tableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
         Me.tableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tableLayoutPanel3.Size = New System.Drawing.Size(524, 279)
+        Me.tableLayoutPanel3.Size = New System.Drawing.Size(516, 266)
         Me.tableLayoutPanel3.TabIndex = 0
         '
         'flowLayoutPanel3
@@ -359,7 +378,7 @@ Partial Class FrmMain
         Me.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flowLayoutPanel3.Location = New System.Drawing.Point(3, 3)
         Me.flowLayoutPanel3.Name = "flowLayoutPanel3"
-        Me.flowLayoutPanel3.Size = New System.Drawing.Size(518, 20)
+        Me.flowLayoutPanel3.Size = New System.Drawing.Size(510, 20)
         Me.flowLayoutPanel3.TabIndex = 0
         '
         'chkSubscribe
@@ -390,8 +409,54 @@ Partial Class FrmMain
         Me.lstPesanMasuk.FormattingEnabled = True
         Me.lstPesanMasuk.Location = New System.Drawing.Point(3, 29)
         Me.lstPesanMasuk.Name = "lstPesanMasuk"
-        Me.lstPesanMasuk.Size = New System.Drawing.Size(518, 247)
+        Me.lstPesanMasuk.Size = New System.Drawing.Size(510, 234)
         Me.lstPesanMasuk.TabIndex = 1
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.TableLayoutPanel4)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(522, 272)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Pesan Keluar"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'TableLayoutPanel4
+        '
+        Me.TableLayoutPanel4.ColumnCount = 1
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel4.Controls.Add(Me.lstPesanKeluar, 0, 1)
+        Me.TableLayoutPanel4.Controls.Add(Me.chkMessageSentSubscribe, 0, 0)
+        Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel4.Location = New System.Drawing.Point(3, 3)
+        Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
+        Me.TableLayoutPanel4.RowCount = 2
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(516, 266)
+        Me.TableLayoutPanel4.TabIndex = 0
+        '
+        'lstPesanKeluar
+        '
+        Me.lstPesanKeluar.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lstPesanKeluar.FormattingEnabled = True
+        Me.lstPesanKeluar.Location = New System.Drawing.Point(3, 29)
+        Me.lstPesanKeluar.Name = "lstPesanKeluar"
+        Me.lstPesanKeluar.Size = New System.Drawing.Size(510, 234)
+        Me.lstPesanKeluar.TabIndex = 0
+        '
+        'chkMessageSentSubscribe
+        '
+        Me.chkMessageSentSubscribe.AutoSize = True
+        Me.chkMessageSentSubscribe.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.chkMessageSentSubscribe.Location = New System.Drawing.Point(3, 3)
+        Me.chkMessageSentSubscribe.Name = "chkMessageSentSubscribe"
+        Me.chkMessageSentSubscribe.Size = New System.Drawing.Size(510, 20)
+        Me.chkMessageSentSubscribe.TabIndex = 1
+        Me.chkMessageSentSubscribe.Text = "Subscribe"
+        Me.chkMessageSentSubscribe.UseVisualStyleBackColor = True
         '
         'FrmMain
         '
@@ -416,10 +481,14 @@ Partial Class FrmMain
         Me.FlowLayoutPanel4.PerformLayout()
         Me.FlowLayoutPanel5.ResumeLayout(False)
         Me.FlowLayoutPanel5.PerformLayout()
-        Me.groupBox2.ResumeLayout(False)
+        Me.TabControl1.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
         Me.tableLayoutPanel3.ResumeLayout(False)
         Me.flowLayoutPanel3.ResumeLayout(False)
         Me.flowLayoutPanel3.PerformLayout()
+        Me.TabPage2.ResumeLayout(False)
+        Me.TableLayoutPanel4.ResumeLayout(False)
+        Me.TableLayoutPanel4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -433,7 +502,6 @@ Partial Class FrmMain
     Private WithEvents txtKontak As System.Windows.Forms.TextBox
     Private WithEvents label3 As System.Windows.Forms.Label
     Private WithEvents txtPesan As System.Windows.Forms.TextBox
-    Private WithEvents groupBox2 As System.Windows.Forms.GroupBox
     Private WithEvents tableLayoutPanel3 As System.Windows.Forms.TableLayoutPanel
     Private WithEvents flowLayoutPanel3 As System.Windows.Forms.FlowLayoutPanel
     Private WithEvents chkSubscribe As System.Windows.Forms.CheckBox
@@ -453,5 +521,11 @@ Partial Class FrmMain
     Friend WithEvents btnCariDokumen As System.Windows.Forms.Button
     Private WithEvents chkHeadless As System.Windows.Forms.CheckBox
     Private WithEvents btnGrabContacts As System.Windows.Forms.Button
+    Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
+    Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
+    Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
+    Friend WithEvents TableLayoutPanel4 As System.Windows.Forms.TableLayoutPanel
+    Friend WithEvents lstPesanKeluar As System.Windows.Forms.ListBox
+    Friend WithEvents chkMessageSentSubscribe As System.Windows.Forms.CheckBox
 
 End Class

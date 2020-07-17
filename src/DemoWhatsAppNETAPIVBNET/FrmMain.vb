@@ -37,6 +37,7 @@ Public Class FrmMain
                 btnKirim.Enabled = True
 
                 chkSubscribe.Enabled = True
+                chkMessageSentSubscribe.Enabled = True
 
             Else
                 _whatsAppApi.Disconnect()
@@ -56,6 +57,9 @@ Public Class FrmMain
 
             chkSubscribe.Checked = False
             chkSubscribe.Enabled = False
+
+            chkMessageSentSubscribe.Checked = False
+            chkMessageSentSubscribe.Enabled = False
 
             chkAutoReplay.Checked = False
             chkAutoReplay.Enabled = False
@@ -201,5 +205,29 @@ Public Class FrmMain
             Dim frmContact = New FrmListContact(contacts)
             frmContact.ShowDialog()
         End Using
+    End Sub
+
+    Private Sub chkMessageSentSubscribe_CheckedChanged(sender As Object, e As EventArgs) Handles chkMessageSentSubscribe.CheckedChanged
+        If (chkMessageSentSubscribe.Checked) Then
+            AddHandler _whatsAppApi.OnMessageSent, AddressOf OnMessageSentEventHandler
+        Else
+            RemoveHandler _whatsAppApi.OnMessageSent, AddressOf OnMessageSentEventHandler
+
+            lstPesanKeluar.Items.Clear()
+        End If
+    End Sub
+
+    Private Sub OnMessageSentEventHandler(e As MsgArgs)
+        Dim msg = String.Format("[{0}] {1}: {2}",
+                e.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss"), e.Sender, e.Msg)
+
+        ' karena pesan yang masuk beda thread, 
+        ' jadi harus menggunakan cara seperti ini untuk mengupdate UI
+        lstPesanKeluar.Invoke(
+            Sub()
+                lstPesanKeluar.Items.Add(msg)
+                lstPesanKeluar.SelectedIndex = lstPesanKeluar.Items.Count - 1
+            End Sub
+        )
     End Sub
 End Class
