@@ -105,27 +105,12 @@ namespace DemoWhatsAppNETAPICSharp
                     fileGambarAtauDokumen = txtFileDokumen.Text;
                 }
 
-                // TODO: diaktifkan lagi
-                /*
                 for (int i = 0; i < jumlahPesan; i++)
                 {
                     if (!string.IsNullOrEmpty(fileGambarAtauDokumen))
                         list.Add(new BroadcastMsgArgs(txtKontak.Text, txtPesan.Text, fileGambarAtauDokumen));
                     else
                         list.Add(new BroadcastMsgArgs(txtKontak.Text, txtPesan.Text));
-                }*/
-
-                if (!string.IsNullOrEmpty(fileGambarAtauDokumen))
-                {
-                    list.Add(new BroadcastMsgArgs("My 3 HP", txtPesan.Text, fileGambarAtauDokumen));
-                    //list.Add(new BroadcastMsgArgs("Adek Simpati", txtPesan.Text, fileGambarAtauDokumen));
-                    list.Add(new BroadcastMsgArgs("Kartu 3 Modem Bolt", txtPesan.Text, fileGambarAtauDokumen));
-                }
-                else
-                {
-                    list.Add(new BroadcastMsgArgs("My 3 HP", txtPesan.Text));
-                    //list.Add(new BroadcastMsgArgs("Adek Simpati", txtPesan.Text));
-                    list.Add(new BroadcastMsgArgs("Kartu 3 Modem Bolt", txtPesan.Text));
                 }
 
                 var delayInSeconds = 1;
