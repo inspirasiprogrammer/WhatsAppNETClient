@@ -7,7 +7,7 @@ Bisa Anda cek di http://wa-net.coding4ever.net/
 ## Persyaratan Sistem
 
 * .NET Framework 4.0, 4.5 dan .NET versi terbaru
-*  Versi minimal Google Chrome harus versi 83.xx (jadi klo belum sama silahkan diupdate dulu)
+*  Versi minimal Google Chrome harus versi 87.xx (jadi klo belum sama silahkan diupdate dulu)
 
 Sebelum membuka source code, lakukan proses instalasi
 
@@ -15,6 +15,12 @@ Sebelum membuka source code, lakukan proses instalasi
 
 * Copykan file [chromedriver.exe](https://github.com/WhatsAppNETClient/WhatsAppNETClient/tree/master/libs) yang ada di folder **libs** ke folder **bin\Debug** atau **bin\Release**
 * Jika folder **bin\Debug** atau **bin\Release** belum ada, silahkan lakukan proses build project terlebih dulu.
+
+## Melaporkan Bug atau Error
+
+Secara teknis dalam pengembangan sebuah aplikasi jelas tidak mungkin 100% bebas dari bug. Nah jika Anda menemukan bug atau error pada saat menggunakan library WhatsApp NET Client ini, silahkan Anda laporkan di halaman [https://github.com/WhatsAppNETClient/WhatsAppNETClient/issues](https://github.com/WhatsAppNETClient/WhatsAppNETClient/issues).
+
+Error yang sering terjadi adalah ketika versi google chrome Anda tidak kompatibel dengan versi ChromeDriver (WebDriver for Chrome), sehingga Anda harus mendownload ulang file [chromedriver.exe](https://chromedriver.chromium.org/downloads) yang menyesuaikan dengan versi google chrome Anda.
 
 ## Downgrade .NET Framework Contoh Project
 
