@@ -13,8 +13,9 @@ Sebelum membuka source code, lakukan proses instalasi
 
 ## Instalasi
 
+* Buka project WhatsAppNETClient, kemudian klik kanan solution `WhatsAppNETAPI` -> `Rebuild Solution`.
 * Copykan file [chromedriver.exe](https://github.com/WhatsAppNETClient/WhatsAppNETClient/tree/master/libs) yang ada di folder **libs** ke folder **bin\Debug** atau **bin\Release**
-* Jika folder **bin\Debug** atau **bin\Release** belum ada, silahkan lakukan proses build project terlebih dulu.
+* Selesai, Anda bisa langsung menjalankan project.
 
 ## Melaporkan Bug atau Error
 
